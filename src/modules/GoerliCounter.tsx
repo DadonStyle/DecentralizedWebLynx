@@ -46,7 +46,13 @@ const GoerliCounter = () => {
         <div className="info-item">
           globalCounter: {contractData.globalCounter}
         </div>
-        <div className="info-item">topUser: {contractData.topUser}</div>
+        <div className="info-item">
+          topUser:
+          {contractData.topUser.toLowerCase() === address.toLowerCase() &&
+          address.length > 0
+            ? "You are the top user!"
+            : contractData.topUser}
+        </div>
         <div className="info-item">perSession: {personalBrowser}</div>
         <div className="info-item">
           personal: {contractData.personalCounter}
