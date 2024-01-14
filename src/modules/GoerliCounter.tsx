@@ -7,6 +7,7 @@ import useContractData, { countersState } from "../hooks/useContractData";
 import { sendTx } from "../util/contract";
 import { CONTRACT_ADDRESS } from "../constants/ContractAddress";
 import { ABI } from "../constants/ContractABI";
+import "./GoerliCounter.css";
 
 const GoerliCounter = () => {
   const provider = useContext(ProviderSingletonContext);
@@ -29,22 +30,24 @@ const GoerliCounter = () => {
   };
 
   return (
-    <div>
-      <div className="header-container">
+    <div className="goerli-counter-container">
+      <div className="connect-btn-wrapper">
         <ConnectButton
           cb={handleConnectWallet}
           isConnected={address.length > 0}
         />
-        <div className="header-info-item">
+      </div>
+      <div className="info-container">
+        <div className="info-item">
           globalCounter: {contractData.globalCounter}
         </div>
-        <div className="header-info-item">
+        <div className="info-item">topUser: {contractData.topUser}</div>
+        <div className="info-item">perSession: {personalBrowser}</div>
+        <div className="info-item">
           personal: {contractData.personalCounter}
         </div>
-        <div className="header-info-item">topUser: {contractData.topUser}</div>
-        <div className="header-info-item">perSession: {personalBrowser}</div>
       </div>
-      <div className="body-container">
+      <div className="increase-btn-wrapper">
         <button onClick={handleIncreaseClick}>Increase</button>
       </div>
     </div>
