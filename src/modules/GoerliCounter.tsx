@@ -1,8 +1,9 @@
 import { useContext, useState } from "react";
 import ConnectButton from "../components/ConnectButtons/ConnectButton";
 import { connectWallet } from "../util/wallet";
+import { useMetaMaskAddress } from "../hooks/useMMnetworkChange";
 import { ProviderSingletonContext } from "../context/ProviderSingletonContext";
-import { useMetaMaskAddress } from "../hooks/useMMaddress";
+import { useIsGoerli } from "../hooks/useIsGoerli";
 import useContractData, { countersState } from "../hooks/useContractData";
 import { sendTx } from "../util/contract";
 import { CONTRACT_ADDRESS } from "../constants/ContractAddress";
@@ -14,6 +15,10 @@ const GoerliCounter = () => {
   const { address, setAddress } = useMetaMaskAddress();
   const [personalBrowser, SetPersonalBrowser] = useState<number>(0);
   const { contractData, setContractData } = useContractData();
+  const isGoerli = useIsGoerli();
+
+  if (!isGoerli)
+    return <div className="switch-err">Please switch to Goerli</div>;
 
   const handleConnectWallet = async () =>
     await connectWallet(provider, setAddress);

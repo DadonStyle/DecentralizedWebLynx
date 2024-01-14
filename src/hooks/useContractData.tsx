@@ -3,8 +3,8 @@ import { useContext, useEffect, useState } from "react";
 import { fromBigNumber, getContract } from "../util/contract";
 import { CONTRACT_ADDRESS } from "../constants/ContractAddress";
 import { ABI } from "../constants/ContractABI";
-import { useMetaMaskAddress } from "./useMMaddress";
 import { ProviderSingletonContext } from "../context/ProviderSingletonContext";
+import { useMetaMaskAddress } from "./useMMnetworkChange";
 
 export interface countersState {
   personalCounter: number;

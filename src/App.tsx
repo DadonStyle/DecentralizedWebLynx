@@ -4,6 +4,7 @@ import { ProviderSingletonProvider } from "./context/ProviderSingletonContext";
 import "./App.css";
 
 const App = () => {
+  if (!window.ethereum) return <div>Please use MM browser</div>;
   return (
     <ProviderSingletonProvider>
       <MetaMaskAddressProvider>
